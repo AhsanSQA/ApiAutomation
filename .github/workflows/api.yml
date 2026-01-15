@@ -1,8 +1,16 @@
 name: Run Postman Collection (QA)
 
 on:
+  # Runs automatically when code is pushed
+  push:
+    branches: [main]
+
+  # Runs automatically when PR is opened or updated
   pull_request:
     branches: [main]
+
+  # Allows manual trigger from Actions tab
+  workflow_dispatch:
 
 jobs:
   postman-tests:
@@ -26,4 +34,4 @@ jobs:
       # RULE: Run Postman collection
       - name: Run API tests
         run: |
-          newman run Exported api\JSONPlaceholder QA Practice Collection.postman_collection.json
+          newman run Exportedapi\collection.json
