@@ -34,4 +34,4 @@ jobs:
       # RULE: Run Postman collection
       - name: Run API tests
         run: |
-          newman run Exportedapi\collection.json
+          newman run Exportedapi/collection.json
