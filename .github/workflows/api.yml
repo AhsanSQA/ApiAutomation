@@ -1,0 +1,29 @@
+name: Run Postman Collection (QA)
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  postman-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      # RULE: Checkout repo code
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # RULE: Install Node.js (Newman needs Node)
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      # RULE: Install Newman globally
+      - name: Install Newman
+        run: npm install -g newman
+
+      # RULE: Run Postman collection
+      - name: Run API tests
+        run: |
+          newman run Exported api\JSONPlaceholder QA Practice Collection.postman_collection.json
